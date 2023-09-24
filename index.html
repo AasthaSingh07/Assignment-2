@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+       #container {
+        width: 40%;
+        margin: 100px auto;
+        /* max-width: 60rem; */
+        border: 1px solid black;
+       }
+       h3{
+        text-align: center;
+        color: red;
+       }
+    </style>
+</head>
+<body>
+  <div id="container">
+    <h3> Registration Form</h3>
+    <form action="#" method="get" id="myForm">
+    <label for="">First Name: </label>
+    <input required type="text" id="fname" name="fname">
+    <br>
+    <label for="">Last Name: </label>
+    <input required type="text" id="lname" name="lname">
+    <br>
+    <label for="">Email: </label>
+    <input required type="email" id="email" name="email">
+    <br>
+    <label for="">Gender: </label><br>
+    <input required type="radio" name="gender" value="male" id="mRadio"> Male <br>
+    <input required type="radio" name="gender" value="female" id="fRadio"> Female <br>
+    <input required type="radio" name="gender" value="others" id="oRadio"> Others
+    <br><br>
+    <label for="">Age: </label>
+    <input required min="18" max="60" step="1" type="number" id="age" name="age">
+    <br><br>
+    <label for="cob">City Of Birth: </label>
+    <select name="cob" id="cob" required>
+        <option value="" selected disabled hidden>Select an Option</option>
+        <option value ="bangalore">Bangalore</option>
+        <option value ="jaipur">Jaipur</option>
+        <option value ="sambalpur">Sambalpur</option>
+        <option value ="mangalore">Mangalore</option>
+        <option value ="patna">Patna</option>
+        <option value ="srinagar">Srinagar</option>
+        <option value ="kanpur">Kanpur</option>
+        <option value ="guwahati">Guwahati</option>
+        <option value ="hassan">Hassan</option>
+        <option value ="ramnagar">Ramnagar</option>
+        <option value ="bidar">Bidar</option>
+        <option value ="tumkur">Tumkur</option>
+    </select>
+    <br><br>
+    <label for="">Select your resume: </label>
+    <input required type="file" name="upload" id="upload" accept="application/pdf,application/docx,application/doc">
+    <br><br>
+    <label for="paf">Position Applying For: </label><br>
+    <input type="checkbox" name="paf" id="paf" value="developer" >Developer<br>
+    <input type="checkbox" name="paf" id="paf" value="designer" >Designer<br>
+    <input type="checkbox" name="paf" id="paf" value="testing" >Testing<br>
+    <input type="checkbox" name="paf" id="paf" value="engineer" >Engineer<br>
+    <input type="checkbox" name="paf" id="paf" value="sales support">Sales Support<br>
+    <input type="checkbox" name="paf" id="paf" value="hr">HR
+    <br><br>
+    <label for="">Tentative Joining Date: </label>
+    <input required type ="date" id="tjd" name="tjd"><br><br>
+    <button type = "submit">Submit</button>
+</form>
+</div>
+<script>
+    var uage = document.getElementById("age");
+    uage.addEventListener("change",function(){
+        if(uage.value < 18){
+            uage.setCustomValidity("you are younger to join us");
+        }else if(uage.value > 60){
+            uage.setCustomValidity("you too old to join us");
+        }else{
+            uage.setCustomValidity("");
+        }
+    });
+
+    const myForm = document.getElementById("myForm");
+
+    myForm.addEventListener("submit", function(event){
+        const checkboxes = document.querySelectorAll('input[name="paf"]');
+        let atLeastOneChecked = false;
+        for(const checkbox of checkboxes) {
+            if(checkbox.checked){
+                atLeastOneChecked = true;
+                break;
+            }
+        }
+
+        if(!atLeastOneChecked){
+            event.preventDefault();
+            alert("Please select atleast one position");
+        }
+    })
+</script>
+</body>
+</html>
